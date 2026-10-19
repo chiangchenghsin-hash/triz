@@ -1,0 +1,16 @@
+# Generated analysis reports (triz.js output)
+triz_analysis_*.md
+
+# Differential-test run artifacts
+*.tsv
+*.inputs.jsonl
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Local agent settings (never publish)
+.claude/settings.local.json
