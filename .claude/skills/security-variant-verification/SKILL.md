@@ -235,10 +235,20 @@ harness is invoked from anywhere by path.
 - Model and implementation drift apart across versions → run the differential
   suite on a fixed cadence (e.g. nightly) so drift surfaces the day it appears.
 
-## When stuck
+## Collaboration with the `triz` skill (when stuck)
 
-A design gap or a design contradiction blocking any phase (hard gate vs
-flexible workflow, ledger completeness vs token budget, wrong model boundary):
-see [references/triz-mapping.md](references/triz-mapping.md) — **REQUIRED at
-design gaps: use the `triz` skill** via its contradiction-card handoff, then
-verify the redesign with this skill's own binding discipline.
+Cross-invocation is by skill name via the Skill tool — never by file path.
+
+- Trigger (decidable): a design gap or design contradiction blocks any phase
+  (hard gate vs flexible workflow, ledger completeness vs token budget, wrong
+  model boundary), or the P2 budget stop-rule fires.
+- Hand off to `triz` via the Skill tool, passing the filled contradiction card
+  (format in [references/triz-mapping.md](references/triz-mapping.md)) as the
+  problem statement: phase (P0–P5), both hard constraints, the conflict in one
+  sentence, involved artifacts, acceptance criteria, and how this skill will
+  machine-verify the chosen resolution. Never copy Five-Bridges content into
+  this skill; the method lives there, the handoff lives here.
+- Boundaries: this skill does not generate redesign candidates — it only
+  adjudicates them (P4 binding + gate). No recursive self-invocation while
+  this skill is running; handoffs are one-shot, not loops. After `triz`
+  returns a redesign, verify it with this skill's own binding discipline.

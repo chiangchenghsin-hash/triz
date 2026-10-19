@@ -2,9 +2,9 @@
   "name": "triz",
   "version": "1.0.0",
   "description": "TRIZ Systematic Innovation Method for OpenClaw - AI-powered systematic innovation analysis using TRIZ methodology",
-  "main": "triz.js",
+  "main": ".claude/skills/triz/triz.js",
   "bin": {
-    "triz": "./triz.js"
+    "triz": "./.claude/skills/triz/triz.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
