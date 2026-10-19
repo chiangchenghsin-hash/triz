@@ -146,12 +146,6 @@ live as siblings here.
 # -> ~/.openclaw/skills/security-variant-verification/  (SKILL.md + scripts/ + references/ + examples/)
 ```
 
-or via clawhub:
-
-```bash
-npx clawhub@latest install triz
-```
-
 **Platform note (WorkBuddy and other OpenClaw-compatible workspaces):**
 installers that only load one package-level skill will pick up just one half of
 the pair — copy both skill directories into the platform's skills directory
