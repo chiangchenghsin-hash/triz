@@ -118,19 +118,42 @@ Each generated solution is evaluated on 8 dimensions:
 
 ## Repository layout
 
+This set ships **two skills, as a pair** — TRIZ generates, the companion
+adjudicates; install both or the verification story is incomplete:
+
 - `SKILL.md`, `triz.js`, `templates/`, `examples/` — the TRIZ skill (this README)
-- `.claude/skills/security-variant-verification/` — companion skill that
-  machine-verifies a design against its implementation (differential testing +
-  release gate). Division of labor: TRIZ generates candidate designs; that
-  skill adjudicates whether they hold. See its `SKILL.md`.
+- `.claude/skills/security-variant-verification/` — the SVV companion skill.
+  Why it is paired with TRIZ: TRIZ's "validated solutions" are heuristic
+  evaluations (opinions). Anything that must be machine-verified against a
+  production implementation — security properties, model-vs-code agreement,
+  release gating — goes to SVV, which returns gate verdicts (differential
+  testing + exit-code gate), not opinions. Division of labor: TRIZ generates
+  candidate designs; SVV adjudicates whether they hold. See its `SKILL.md`.
 
 ## Installation
 
-This skill is automatically available when installed in your OpenClaw workspace.
+`install.sh` installs the **pair** (flat TRIZ skill + SVV companion directory):
+
+```bash
+./install.sh
+# -> ~/.openclaw/skills/triz.SKILL.md
+# -> ~/.openclaw/skills/security-variant-verification/  (SKILL.md + scripts/ + references/ + examples/)
+```
+
+or via clawhub:
 
 ```bash
 npx clawhub@latest install triz
 ```
+
+**Platform note (WorkBuddy and other OpenClaw-compatible workspaces):** a
+second skill nested inside a package (`.../triz/.claude/skills/...`) is not
+reliably auto-registered — most installers only load the package root
+`SKILL.md`. If your platform picked up TRIZ only, copy the
+`security-variant-verification/` folder into the platform's skills directory
+alongside TRIZ (keep its `scripts/`, `references/`, `examples/` — the skill's
+workflow calls them). On Claude Code / Trae-style project skill scanners the
+in-repo nested layout is discovered as-is.
 
 ## License
 
