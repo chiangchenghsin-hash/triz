@@ -167,7 +167,7 @@ class TRIZAnalyzer {
       bridgeType: 'evolution',
       evolutionLaws,
       futureTrends,
-      recommendations: this.generateEvolutionRecommendations(trends)
+      recommendations: this.generateEvolutionRecommendations(futureTrends)
     };
   }
 
