@@ -118,38 +118,32 @@ Each generated solution is evaluated on 8 dimensions:
 
 ## Repository layout
 
-This set ships **two skills, as a pair**, each a self-contained skill
-directory (the layout every skills scanner registers one level deep):
-
 - `.claude/skills/triz/` — the TRIZ skill: `SKILL.md`, `triz.js`, `templates/`,
-  `examples/`
-- `.claude/skills/security-variant-verification/` — the SVV companion skill:
-  `SKILL.md`, `scripts/`, `references/`, `examples/`
+  `examples/` (a self-contained skill directory — the layout every skills
+  scanner registers one level deep)
 
-Why they are paired: TRIZ's "validated solutions" are heuristic evaluations
-(opinions). Anything that must be machine-verified against a production
-implementation — security properties, model-vs-code agreement, release gating —
-goes to SVV, which returns gate verdicts (differential testing + exit-code
-gate), not opinions. Division of labor: TRIZ generates candidate designs; SVV
-adjudicates whether they hold. They invoke each other by skill name via the
-Skill tool (handoff rules and boundaries in each `SKILL.md`); a second skill
-nested inside another skill's tree is never auto-registered, which is why both
-live as siblings here.
+This repo ships the generation half of a pair. The adjudication half is the
+companion skill **[security-variant-verification](https://github.com/chiangchenghsin-hash/security-variant-verification)**
+(its own project — install it separately): TRIZ's "validated solutions" are
+heuristic evaluations (opinions); anything that must be machine-verified
+against a production implementation — security properties, model-vs-code
+agreement, release gating — goes to SVV, which returns gate verdicts
+(differential testing + exit-code gate), not opinions. The two skills invoke
+each other by skill name via the Skill tool (handoff rules and boundaries in
+each `SKILL.md`).
 
 ## Installation
 
-`install.sh` installs the **pair** as sibling skill directories:
-
 ```bash
 ./install.sh
-# -> ~/.openclaw/skills/triz/                        (SKILL.md + triz.js + templates/ + examples/)
-# -> ~/.openclaw/skills/security-variant-verification/  (SKILL.md + scripts/ + references/ + examples/)
+# -> ~/.openclaw/skills/triz/   (SKILL.md + triz.js + templates/ + examples/)
 ```
 
-**Platform note (WorkBuddy and other OpenClaw-compatible workspaces):**
-installers that only load one package-level skill will pick up just one half of
-the pair — copy both skill directories into the platform's skills directory
-side by side (keep each directory's bundled files; the workflows call them).
+Companion (optional, for the full generate→verify loop): install from
+[security-variant-verification](https://github.com/chiangchenghsin-hash/security-variant-verification).
+On platforms that load skills from directories (Claude Code project skills,
+WorkBuddy, other OpenClaw-style workspaces), copy each project's skill
+directory in side by side and keep its bundled files.
 
 ## License
 

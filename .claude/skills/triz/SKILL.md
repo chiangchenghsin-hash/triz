@@ -59,9 +59,11 @@ TRIZ is a systematic approach to innovation that transforms complex technical ch
 
 ## Collaboration with the `security-variant-verification` skill
 
-The pair is one product: TRIZ generates candidate designs; the companion
+TRIZ generates candidate designs; the companion skill
+`security-variant-verification` (its own project — install it alongside)
 machine-verifies them. Cross-invocation is by skill name via the Skill tool —
-never by file path.
+never by file path. If the companion is not installed, say so and stop at
+opinion-level evaluation; never improvise machine verdicts in its absence.
 
 ### Handoff rules (TRIZ → SVV)
 
