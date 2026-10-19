@@ -1,0 +1,89 @@
+{
+  "name": "Function Bridge",
+  "description": "TRIZ Function Bridge Analysis Template",
+  "components": [
+    {
+      "component_name": "Function analysis",
+      "analysis_steps": [
+        "Identify useful and harmful functions in the system",
+        "Analyze function carriers and function objects",
+        "Identify insufficient or excessive functions",
+        "Pinpoint functional contradictions"
+      ]
+    },
+    {
+      "component_name": "Functional model",
+      "elements": [
+        "Tool",
+        "Object",
+        "Action",
+        "Useful Function",
+        "Harmful Function",
+        "Insufficient Function"
+      ]
+    },
+    {
+      "component_name": "Function improvement directions",
+      "strategies": [
+        "Eliminate harmful functions",
+        "Enhance useful functions",
+        "Reduce insufficient functions",
+        "Separate functions",
+        "Transfer functions"
+      ]
+    }
+  ],
+  "contradiction_matrix": {
+    "improving_parameters": [
+      "Functional reliability",
+      "Operational convenience",
+      "Energy efficiency",
+      "System complexity",
+      "Maintenance convenience",
+      "Safety",
+      "Cost",
+      "Weight",
+      "Size",
+      "Speed"
+    ],
+    "worsening_parameters": [
+      "System complexity",
+      "Cost",
+      "Weight",
+      "Size",
+      "Manufacturing complexity",
+      "Reliability",
+      "Maintenance demand",
+      "Energy consumption",
+      "Operational difficulty",
+      "Safety risk"
+    ]
+  },
+  "inventive_principles": [
+    {
+      "id": 1,
+      "name": "Segmentation",
+      "applications": ["Break a function into independent modules", "Separate functions to reduce conflicts"]
+    },
+    {
+      "id": 2,
+      "name": "Taking out",
+      "applications": ["Extract harmful functions into a separate component", "Isolate critical functions"]
+    },
+    {
+      "id": 3,
+      "name": "Local quality",
+      "applications": ["Provide the function where it is needed", "Local optimization of a function"]
+    },
+    {
+      "id": 4,
+      "name": "Asymmetry",
+      "applications": ["Asymmetric function distribution", "Directional functional action"]
+    },
+    {
+      "id": 5,
+      "name": "Merging",
+      "applications": ["Multi-function integration", "Functional synergy"]
+    }
+  ]
+}
