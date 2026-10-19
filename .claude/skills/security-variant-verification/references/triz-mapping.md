@@ -83,7 +83,7 @@ Scan the *current design* against these four recurring hole classes. Copy this
 block per engagement; fill every row (`OK` / `GAP` / `N/A` + one line of evidence):
 
 ```
-GAP SCAN  (date: ____  engagement: ____) 
+GAP SCAN  (date: ____  engagement: ____)
   Isolation band:   seed corpus vs verdict layer — can a poisoned seed forge a
                     verdict?                                    [OK|GAP|N/A]
   Cadence:          is there a regression beat outside the release gate
