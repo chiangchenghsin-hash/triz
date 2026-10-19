@@ -33,6 +33,12 @@ IMPL_CRASHY = textwrap.dedent('''
             raise RuntimeError("production crash")
         return "even" if inp["n"] % 2 == 0 else "odd"
 ''')
+IMPL_SLOW = textwrap.dedent('''
+    import time
+    def run(inp):
+        time.sleep(3)
+        return "even" if inp["n"] % 2 == 0 else "odd"
+''')
 
 
 class DiffTestHarness(unittest.TestCase):
@@ -95,6 +101,17 @@ class DiffTestHarness(unittest.TestCase):
         rows = self._ledger_rows()
         self.assertTrue(any("\tCRASH\t" in row for row in rows),
                         "runner crash must be recorded as a finding")
+
+    def test_timeout_is_a_crash_finding(self):
+        # Characterization of the --timeout contract: a hung runner becomes a
+        # CRASH finding (gate blocks), it must neither hang the harness nor
+        # silently pass.
+        r = self._run(IMPL_SLOW, "--timeout", "0.3", n=5)
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        rows = self._ledger_rows()
+        self.assertTrue(any("\tCRASH\t" in row and "TimeoutError" in row
+                            for row in rows),
+                        "a timed-out runner must be recorded as a CRASH finding")
 
     def test_infra_error_exits_two(self):
         self._write("impl.py", IMPL_OK)

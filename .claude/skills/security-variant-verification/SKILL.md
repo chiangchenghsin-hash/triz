@@ -1,6 +1,6 @@
 ---
 name: security-variant-verification
-description: Use when hunting vulnerability variants from a CVE or patch, binding a formal or simplified model to a production implementation through differential testing, gating a release on model-implementation agreement, or auditing LLM security findings to cut false positives. Triggers: variant hunting, patch-pattern migration, differential/diff testing, Lean small model, Cedar-style property, neuro-symbolic security audit, divergence ledger, release gate.
+description: "Use when hunting vulnerability variants from a CVE or patch, binding a formal or simplified model to a production implementation through differential testing, gating a release on model-implementation agreement, or auditing LLM security findings to cut false positives. Triggers: variant hunting, patch-pattern migration, differential/diff testing, Lean small model, Cedar-style property, neuro-symbolic security audit, divergence ledger, release gate."
 ---
 
 # Security Variant Verification
@@ -114,7 +114,13 @@ additional exploitable bugs in 3 weeks. See
 | Layer | Component | Job | Trust |
 |---|---|---|---|
 | Neural | LLM | candidate generation, pattern abstraction, false-positive triage | untrusted (must carry `[explanation]`) |
-| Symbolic | CodeQL / Joern / Lean kernel / SAT | verdict, count, proof | trusted (auditable) |
+| Symbolic | CodeQL / Joern / SAT / Lean kernel† | verdict, count, proof | trusted (auditable) |
+
+† The Lean kernel is the formal end of this column (Cedar/SymCert pattern,
+cornerstones 2) and is **not shipped in this repo** — bring your own behind a
+`run(inp)` adapter, or use a Python stand-in as the example's `model.py` does.
+What ships here: `scripts/diff_test.py` + the worked example. CodeQL/Joern
+verdict tools are engagement-supplied the same way.
 
 - Reference figure (claimed; MoCQ experiment, 343-vulnerability set): pure-LLM
   false-discovery rate 49.6% → 19.4% once deterministic queries adjudicate.
